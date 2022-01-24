@@ -12,6 +12,6 @@ copy --from=tools /usr/share /usr/share
 
 workdir /opt/airflow
 
-run ["/bin/bash", "-c", "mkdir data && cd data && while read i; do git clone $i; done < <(curl -s https://api.github.com/orgs/datasets/repos?per_page=10 | jq -r '.[].clone_url')"] 
+run ["/bin/bash", "-c", "mkdir data && cd data && while read i; do git clone $i; done < <(curl -s https://api.github.com/orgs/datasets/repos?per_page=100 | jq -r '.[].clone_url')"] 
 
 entrypoint ["bash"]
