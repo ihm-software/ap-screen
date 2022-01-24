@@ -1,16 +1,14 @@
 # Instructions
 
 - Build this docker image
-- You can run `bash` as the command with an interactive tty to get into the image:
-
-```
-docker run --rm -it ${whatever-you-named-the-image} /bin/bash
-```
-
-- Setup a local database within the docker image.
-- Load the csv files from the `data` directory into the database you created.
-- Answer the questions [below](README.md#Questions) and output the answers into an answer table(s).
+- Run a container and _mount_ the folder `dags` as a volume onto the container
+- Create a database within the container
+- Write some dags that will
+  - Load the csv files from the `data` directory into the database you created.
+  - Answer the questions [below](README.md#Questions) and output the answers into an answer table for for each question
+  - Show the answer to each question in the log view of each dag
 - Lastly, create a Pull Request with your code for review
+  - We should be able to build this image again, mount the dags folder, and visit the WebUI to see the answers
 
 # Questions
 
