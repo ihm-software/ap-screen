@@ -5,10 +5,16 @@
 - Create a database within the container
 - Write some dags that will
   - Load the csv files from the `data` directory into the database you created.
-  - Answer the questions [below](README.md#Questions) and output the answers into an answer table for for each question
+  - Answer the questions [below](README.md#Questions) and output the answers into an answer table one for each question
   - Show the answer to each question in the log view of each dag
 - Lastly, create a Pull Request with your code for review
-  - We should be able to build this image again, mount the dags folder, and visit the WebUI to see the answers
+
+# Expected Solution
+Using the instructions you provide in the PR
+We should be able to
+- build this image again
+- run and mount the dags folder
+- and visit the WebUI to see the answers in the log for each dag
 
 # Questions
 
