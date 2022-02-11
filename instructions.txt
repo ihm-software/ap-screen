@@ -1,0 +1,16 @@
+List of instructions to run the code:
+
+1. Clone the updated repo after accepting the pull request.
+
+2. Build the Docker image using the following steps:
+cd airflow && docker build -t <image-name> .
+
+3. Run the docker container using:
+docker run -d --name airflow -p 8080:8080 airflow
+
+4. Access airflow WebUI using:
+http://<public-ip>:8080
+
+5. Default Airflow credentials:
+    Username - admin
+    Password - admin
