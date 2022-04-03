@@ -1,0 +1,10 @@
+make sure ./trigger_answer_dags.sh is executable
+chmod +x trigger_answer_dags.sh
+
+build Dockerfile
+
+run the container
+
+Airflow will kickoff, then the dag that creates and puts csv data into sqlite db
+then trigger_answer_dags will kick off the calculation dags 
+Answers will be in the log of each dag
