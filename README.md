@@ -1,57 +1,29 @@
 # Instructions
 
-- Build this docker image
-- Run a container and _mount_ the folder `dags` as a volume onto the container
-- Create a database within the container
-- Write some dags that will
-  - Load the csv files from the `data` directory into the database you created.
-  - Answer the questions [below](README.md#Questions) and output the answers into an answer table one for each question
-  - Show the answer to each question in the log view of each dag
-- Lastly, create a Pull Request with your code for review
+## Step 1
+- After cloning ap-screen repo, change ditectory to ap-screen in your local machine.
+- Run the following command to create image(mine is named tdi).
 
-# Expected Solution
-Using the instructions you provide in the PR
-We should be able to
-- build this image again
-- run and mount the dags folder
-- and visit the WebUI to see the answers in the log for each dag
+	docker build -t tdi .
 
-# Questions
+## Step 2 
+#### Mount dags folder and build container
+- find out image id by using the following command
+	docker ps
+- use the following command to build your container(mine is named workbench) and mount dags folder(-v dags:/dags)
 
-## What's the average number of fields across all the tables you loaded?
+	docker run -d -it -v dags:/dags --name workbench 356307c6d13e
 
-Output should be a simple number
+## Step 3
+#### Enter your container terminal and start webserver instance
+- enter container terminal by using the following command
 
-_sample output_
+	docker exec -t -i workbench  /bin/bash
 
-```
-|Question|Answer|
-|--------|------|
-| 1      | 5    |
-```
+- while inside container terminal use the following command to start webserver instance
 
-## What is the word count of every value of every table
+	airflow webserver
 
-Output should have fields `value` and `count` and one entry for every value found:
-
-_sample output_
-
-```
-|     value     | count  |
-|---------------|--------|
-|   some value  | 435    |
-| another value | 234    |
-|     word      | 45     |
-```
-
-## What's the total number or rows for the all the tables?
-
-Output should be a simple number
-
-_sample output_
-
-```
-|Question|Answer|
-|--------|------|
-| 3      | 1000 |
-```
+- use web browser and enter the following url
+  
+  localhost:8080
