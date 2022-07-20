@@ -5,7 +5,7 @@ from airflow.providers.mysql.hooks.mysql import MySqlHook
 from airflow.operators.python_operator import PythonOperator
 import pandas as pd
 
-# Require default arguments for Airflow DAG
+# Required default arguments for Airflow DAG
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -35,9 +35,12 @@ def move_data_to_database():
     list_data =  [i for j in list_paths for i in csv.DictReader(open(j,'r'))]
 
     # Push data to MySQL database as a dataframe for pandas use (uses mysql connection created earlier)
-    pd.DataFrame(list_data).to_sql('test', conn,
-                    schema=None, if_exists='replace', index=True,
-                    index_label=None, chunksize=None, dtype=None)
+    # Iterate through list to create new table for each csv file
+    for index,table in enumerate(list_data):
+        table_name = "table" + str(index)
+        pd.DataFrame(table).to_sql(table_name, conn,
+                        schema=None, if_exists='replace', index=True,
+                        index_label=None, chunksize=None, dtype=None)
 
 
 def columnAverage():
